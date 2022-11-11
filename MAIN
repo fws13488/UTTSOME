@@ -74,7 +74,7 @@ if game.PlaceId == 10656893781 then
 	local ESP = Window:NewTab("ESP")
 	local ESPSection = ESP:NewSection("ESP")
 
-	TeleportSection:NewToggle("ESP All Players", "ESP All Players", function(state)
+	ESPSection:NewToggle("ESP All Players", "ESP All Players", function(state)
 
 		if state then
 
