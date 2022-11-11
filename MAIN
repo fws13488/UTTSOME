@@ -63,6 +63,14 @@ if game.PlaceId == 10656893781 then
 
 	end)
 
+	TeleportSection:NewButton("Teleport To Lobby", "Teleport To Lobby", function()
+
+		TeleportTo(nil, -707, 377, -1068)
+
+		print("Success Teleported!!!")
+
+	end)
+
 	TeleportSection:NewButton("Teleport To VHS Sans Location", "Teleport To VHS Sans Location", function()
 
 		TeleportTo(nil, -3993, -55, 590)
