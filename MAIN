@@ -13,25 +13,7 @@ if game.PlaceId == 10656893781 then
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 
-	MainSection:NewButton("", "", function()
-
-
-
-	end)
-
-	MainSection:NewToggle("", "", function(state)
-
-		if state then
-
-
-
-		else
-
-
-
-		end
-
-	end)
+	MainSection:NewLabel("Coming Soon...")
 
 	--PLAYER
 
