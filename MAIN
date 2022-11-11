@@ -153,6 +153,25 @@ if game.PlaceId == 10656893781 then
 
 					local ESPHighLight = Instance.new("Highlight", v.Character)
 					ESPHighLight.Name = "EHL"
+					ESPHighLight.FillColor = Color3.new(255, 0, 0)
+					ESPHighLight.OutlineColor = Color3.new(255, 0, 0)
+
+					v.CharacterAdded:Connect(function(character)
+
+						if ESPAllPlayers == true then
+
+							if character:FindFirstChild("EHL") == nil then
+
+								local ESPHighLight = Instance.new("Highlight", character)
+								ESPHighLight.Name = "EHL"
+								ESPHighLight.FillColor = Color3.new(255, 0, 0)
+								ESPHighLight.OutlineColor = Color3.new(255, 0, 0)
+
+							end
+
+						end
+
+					end)
 
 				end
 
@@ -224,6 +243,8 @@ game.Players.PlayerAdded:Connect(function(player)
 
 				local ESPHighLight = Instance.new("Highlight", character)
 				ESPHighLight.Name = "EHL"
+				ESPHighLight.FillColor = Color3.new(255, 0, 0)
+				ESPHighLight.OutlineColor = Color3.new(255, 0, 0)
 
 			end
 
