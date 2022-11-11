@@ -147,9 +147,30 @@ if game.PlaceId == 10656893781 then
 
 			ESPAllPlayers = true
 
+			for i, v in ipairs(game.Players:GetChildren()) do
+
+				if v and v.Character then
+
+					local ESPHighLight = Instance.new("Highlight", v.Character)
+					ESPHighLight.Name = "EHL"
+
+				end
+
+			end
+
 		else
 
 			ESPAllPlayers = false
+
+			for i, v in ipairs(game.Players:GetChildren()) do
+
+				if v and v.Character and v.Character:FindFirstChild("EHL") then
+
+					v.Character:FindFirstChild("EHL"):Destroy()
+
+				end
+
+			end
 
 		end
 
@@ -192,3 +213,22 @@ function TeleportTo(Position, X, Y, Z)
 	end
 
 end
+
+game.Players.PlayerAdded:Connect(function(player)
+
+	player.CharacterAdded:Connect(function(character)
+
+		if ESPAllPlayers == true then
+
+			if character:FindFirstChild("EHL") == nil then
+
+				local ESPHighLight = Instance.new("Highlight", character)
+				ESPHighLight.Name = "EHL"
+
+			end
+
+		end
+
+	end)
+
+end)
