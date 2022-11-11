@@ -1,0 +1,98 @@
+local Player = game.Players.LocalPlayer
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit", "Ocean")
+
+local allowedToTeleportToClickedPosition = false
+
+if game.PlaceId == 10656893781 then
+
+	-- MAIN
+
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+
+	MainSection:NewButton("", "", function()
+
+
+
+	end)
+
+	MainSection:NewToggle("", "", function(state)
+
+		if state then
+
+
+
+		else
+
+
+
+		end
+
+	end)
+
+	--PLAYER
+
+	local Player = Window:NewTab("Player")
+	local PlayerSection = Player:NewSection("Player")
+
+	PlayerSection:NewSlider("Walkspeed", "SPEED!!", 500, 16, function(state)
+
+
+
+	end)
+
+	--TELEPORT
+
+	local Teleport = Window:NewTab("Teleport")
+	local TeleportSection = Teleport:NewSection("Teleport")
+
+	TeleportSection:NewButton("Teleport To VHS Sans Location", "Teleport To VHS Sans Location", function()
+
+
+
+	end)
+
+	TeleportSection:NewToggle("Teleport To The Clicked Position", "Teleport To The Clicked Position", function(state)
+
+		if state then
+
+			allowedToTeleportToClickedPosition = true
+
+		else
+
+			allowedToTeleportToClickedPosition = false
+
+		end
+
+	end)
+
+	--ESP
+
+	local ESP = Window:NewTab("ESP")
+	local ESPSection = Teleport:NewSection("ESP")
+
+else
+
+	Player:Kick("This Exploit UI CANNOT Use In This Game!")
+
+end
+
+Player:GetMouse().Button1Down:Connect(function()
+
+	if allowedToTeleportToClickedPosition == true then
+
+		local ClickedPosition = Player:GetMouse().Hit.Position
+
+		if ClickedPosition then
+
+			Player.Character:MoveTo(ClickedPosition)
+
+			print("Success Teleported To Clicked Position!!!")
+
+		end
+
+	end
+
+end)
