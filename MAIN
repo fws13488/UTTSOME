@@ -49,12 +49,6 @@ if game.PlaceId == 10656893781 then
 	local Teleport = Window:NewTab("Teleport")
 	local TeleportSection = Teleport:NewSection("Teleport")
 
-	TeleportSection:NewButton("Teleport To VHS Sans Location", "Teleport To VHS Sans Location", function()
-
-
-
-	end)
-
 	TeleportSection:NewToggle("Teleport To The Clicked Position", "Teleport To The Clicked Position", function(state)
 
 		if state then
@@ -66,6 +60,18 @@ if game.PlaceId == 10656893781 then
 			allowedToTeleportToClickedPosition = false
 
 		end
+
+	end)
+
+	TeleportSection:NewButton("Teleport To VHS Sans Location", "Teleport To VHS Sans Location", function()
+
+
+
+	end)
+
+	TeleportSection:NewButton("Teleport To Geno Sans Location", "Teleport To Geno Sans Location", function()
+
+		Player.Character:MoveTo(Vector3.new(-1436, 64, 566))
 
 	end)
 
