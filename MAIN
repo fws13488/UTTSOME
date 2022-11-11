@@ -71,8 +71,8 @@ if game.PlaceId == 10656893781 then
 
 	TeleportSection:NewButton("Teleport To Geno Sans Location", "Teleport To Geno Sans Location", function()
 
-		Player.Character:MoveTo(Vector3.new(-1436, 64, 566))
-		
+		TeleportTo(nil, -1436, 64, 566)
+
 		print("Success Teleported!!!")
 
 	end)
@@ -119,3 +119,17 @@ Player:GetMouse().Button1Down:Connect(function()
 	end
 
 end)
+
+function TeleportTo(Position, X, Y, Z)
+
+	if Position ~= nil then
+
+		Player.Character:MoveTo(Position)
+
+	elseif Position == nil and X ~= nil and Y ~= nil and Z ~= nil then
+
+		Player.Character:MoveTo(Vector3.new(X, Y, Z))
+
+	end
+
+end
