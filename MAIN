@@ -72,6 +72,8 @@ if game.PlaceId == 10656893781 then
 	TeleportSection:NewButton("Teleport To Geno Sans Location", "Teleport To Geno Sans Location", function()
 
 		Player.Character:MoveTo(Vector3.new(-1436, 64, 566))
+		
+		print("Success Teleported!!!")
 
 	end)
 
