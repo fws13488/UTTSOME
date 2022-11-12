@@ -13,33 +13,7 @@ local LocalPlayer = game.Players.LocalPlayer
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit", "Ocean")
 
-local PlayersList = {
-
-	game.Players:GetChildren()[1],
-
-	game.Players:GetChildren()[2],
-
-	game.Players:GetChildren()[3],
-
-	game.Players:GetChildren()[4],
-
-	game.Players:GetChildren()[5],
-
-	game.Players:GetChildren()[6],
-
-	game.Players:GetChildren()[7],
-
-	game.Players:GetChildren()[8],
-
-	game.Players:GetChildren()[9],
-
-	game.Players:GetChildren()[10],
-
-	game.Players:GetChildren()[11],
-
-	game.Players:GetChildren()[12],
-
-}
+local PlayersList = {}
 
 local ChosePlayer = nil
 local allowedToTeleportToClickedPosition = false
@@ -51,273 +25,251 @@ local ESPFillColor = ESPDefaultFillColor
 
 if game.PlaceId == 10656893781 then
 
-	-- MAIN
+	local success, errorMessage = pcall(function()
 
-	local Main = Window:NewTab("Main")
-	local MainSection = Main:NewSection("Main")
+		-- MAIN
 
-	MainSection:NewLabel("Coming Soon...")
+		local Main = Window:NewTab("Main")
+		local MainSection = Main:NewSection("Main")
 
-	--PLAYER
+		MainSection:NewLabel("Coming Soon...")
 
-	local Player = Window:NewTab("Player")
-	local PlayerSection = Player:NewSection("Player")
-	local PlayerSection2 = Player:NewSection("Players")
+		--PLAYER
 
-	PlayerSection:NewButton("Reset Character", "Reset Your Character", function()
+		local Player = Window:NewTab("Player")
+		local PlayerSection = Player:NewSection("Player")
+		local PlayerSection2 = Player:NewSection("Players")
 
-		for i = 1, math.random(10, 15) do
+		PlayerSection:NewButton("Reset Character", "Reset Your Character", function()
 
-			LocalPlayer.Character.Humanoid.Health = 0
+			for i = 1, math.random(10, 15) do
 
-			wait()
+				LocalPlayer.Character.Humanoid.Health = 0
 
-		end
-
-	end)
-
-	local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", PlayersList, function(currentOption)
-
-		ChosePlayer = currentOption
-
-		print("Player Chose: "..currentOption)
-
-	end)
-
-	PlayerSection2:NewButton("Refresh Players List", "Refresh Players List", function()
-
-		table.clear(PlayersList)
-
-		PlayersList = {
-
-			game.Players:GetChildren()[1],
-
-			game.Players:GetChildren()[2],
-
-			game.Players:GetChildren()[3],
-
-			game.Players:GetChildren()[4],
-
-			game.Players:GetChildren()[5],
-
-			game.Players:GetChildren()[6],
-
-			game.Players:GetChildren()[7],
-
-			game.Players:GetChildren()[8],
-
-			game.Players:GetChildren()[9],
-
-			game.Players:GetChildren()[10],
-
-			game.Players:GetChildren()[11],
-
-			game.Players:GetChildren()[12],
-
-		}
-
-		playersList:Refresh(PlayersList)
-
-	end)
-
-	PlayerSection2:NewToggle("Spectate Player", "Spectate Player", function(state)
-
-		if state then
-
-			if ChosePlayer ~= nil then
-
-				workspace.Camera.CameraSubject = game.Players[ChosePlayer].Character.Humanoid
+				wait()
 
 			end
 
-		else
+		end)
 
-			workspace.Camera.CameraSubject = LocalPlayer.Character.Humanoid
+		local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", PlayersList, function(currentOption)
 
-		end
+			ChosePlayer = currentOption
 
-	end)
+			print("Player Chose: "..currentOption)
 
-	--TELEPORT
+		end)
 
-	local Teleport = Window:NewTab("Teleport")
-	local TeleportSection = Teleport:NewSection("Teleport")
-	local TeleportSection2 = Teleport:NewSection("Teleport To Zones")
+		PlayerSection2:NewButton("Refresh Players List (Bugged)", "Refresh Players List (Bugged)", function()
 
-	TeleportSection:NewToggle("Teleport To The Clicked Position", "Teleport To The Clicked Position", function(state)
+			table.clear(PlayersList)
 
-		if state then
+			PlayersList = {}
 
-			allowedToTeleportToClickedPosition = true
+			playersList:Refresh(PlayersList)
 
-		else
+		end)
 
-			allowedToTeleportToClickedPosition = false
+		PlayerSection2:NewToggle("Spectate Player", "Spectate Player", function(state)
 
-		end
+			if state then
 
-	end)
+				if ChosePlayer ~= nil then
 
-	TeleportSection:NewButton("Teleport To VHS Sans Location", "Teleport To VHS Sans Location", function()
+					workspace.Camera.CameraSubject = game.Players[ChosePlayer].Character.Humanoid
 
-		TeleportTo(nil, -3993, -55, 590)
+				end
 
-		print("Teleported!!!")
+			else
 
-	end)
+				workspace.Camera.CameraSubject = LocalPlayer.Character.Humanoid
 
-	TeleportSection:NewButton("Teleport To Error Sans Location", "Teleport To Error Sans Location", function()
+			end
 
-		TeleportTo(nil, -1421, 64, 184)
+		end)
 
-		print("Teleported!!!")
+		--TELEPORT
 
-	end)
+		local Teleport = Window:NewTab("Teleport")
+		local TeleportSection = Teleport:NewSection("Teleport")
+		local TeleportSection2 = Teleport:NewSection("Teleport To Zones")
 
-	TeleportSection:NewButton("Teleport To Geno Sans Location", "Teleport To Geno Sans Location", function()
+		TeleportSection:NewToggle("Teleport To The Clicked Position", "Teleport To The Clicked Position", function(state)
 
-		TeleportTo(nil, -1436, 64, 566)
+			if state then
 
-		print("Teleported!!!")
+				allowedToTeleportToClickedPosition = true
 
-	end)
+			else
 
-	TeleportSection:NewButton("Teleport To Distrust Sans Location", "Teleport To Distrust Sans Location", function()
+				allowedToTeleportToClickedPosition = false
 
-		TeleportTo(nil, -850, 403, 885)
+			end
 
-		print("Teleported!!!")
+		end)
 
-	end)
+		TeleportSection:NewButton("Teleport To VHS Sans Location", "Teleport To VHS Sans Location", function()
 
-	TeleportSection2:NewButton("Teleport To Lobby", "Teleport To Lobby", function()
+			TeleportTo(nil, -3993, -55, 590)
 
-		TeleportTo(nil, -707, 377, -1068)
+			print("Teleported!!!")
 
-		print("Teleported!!!")
+		end)
 
-	end)
+		TeleportSection:NewButton("Teleport To Error Sans Location", "Teleport To Error Sans Location", function()
 
-	TeleportSection2:NewButton("Teleport To Zone1", "Teleport To Zone1", function()
+			TeleportTo(nil, -1421, 64, 184)
 
-		TeleportTo(nil, -285, 4, 300)
+			print("Teleported!!!")
 
-		print("Teleported!!!")
+		end)
 
-	end)
+		TeleportSection:NewButton("Teleport To Geno Sans Location", "Teleport To Geno Sans Location", function()
 
-	TeleportSection2:NewButton("Teleport To Zone2", "Teleport To Zone2", function()
+			TeleportTo(nil, -1436, 64, 566)
 
-		TeleportTo(nil, -382, 3, 998)
+			print("Teleported!!!")
 
-		print("Teleported!!!")
+		end)
 
-	end)
+		TeleportSection:NewButton("Teleport To Distrust Sans Location", "Teleport To Distrust Sans Location", function()
 
-	TeleportSection2:NewButton("Teleport To Zone3", "Teleport To Zone3", function()
+			TeleportTo(nil, -850, 403, 885)
 
-		TeleportTo(nil, -659, 3, 998)
+			print("Teleported!!!")
 
-		print("Teleported!!!")
+		end)
 
-	end)
+		TeleportSection2:NewButton("Teleport To Lobby", "Teleport To Lobby", function()
 
-	TeleportSection2:NewButton("Teleport To Challenger Zone", "Teleport To Challenger Zone", function()
+			TeleportTo(nil, -707, 377, -1068)
 
-		TeleportTo(nil, -20408, 1792, 1008)
+			print("Teleported!!!")
 
-		print("Teleported!!!")
+		end)
 
-	end)
+		TeleportSection2:NewButton("Teleport To Zone1", "Teleport To Zone1", function()
 
-	TeleportSection2:NewButton("Teleport To Badge Character Selection", "Teleport To Badge Character Selection", function()
+			TeleportTo(nil, -285, 4, 300)
 
-		TeleportTo(nil, -286, 5, 515)
+			print("Teleported!!!")
 
-		print("Teleported!!!")
+		end)
 
-	end)
+		TeleportSection2:NewButton("Teleport To Zone2", "Teleport To Zone2", function()
 
-	TeleportSection2:NewButton("Teleport To Credit Room", "Teleport To Credit Room", function()
+			TeleportTo(nil, -382, 3, 998)
 
-		TeleportTo(nil, -389, 4, 248)
+			print("Teleported!!!")
 
-		print("Teleported!!!")
+		end)
 
-	end)
+		TeleportSection2:NewButton("Teleport To Zone3", "Teleport To Zone3", function()
 
-	--ESP
+			TeleportTo(nil, -659, 3, 998)
 
-	local ESP = Window:NewTab("ESP")
-	local ESPSection = ESP:NewSection("ESP")
+			print("Teleported!!!")
 
-	ESPSection:NewToggle("ESP All Players", "ESP All Players", function(state)
+		end)
 
-		if state then
+		TeleportSection2:NewButton("Teleport To Challenger Zone", "Teleport To Challenger Zone", function()
 
-			ESPAllPlayers = true
+			TeleportTo(nil, -20408, 1792, 1008)
 
-			for i, v in ipairs(game.Players:GetChildren()) do
+			print("Teleported!!!")
 
-				if v and v.Character then
+		end)
 
-					local ESPHighLight = Instance.new("Highlight", v.Character)
-					ESPHighLight.Name = "EHL"
-					ESPHighLight.FillColor = ESPFillColor
-					ESPHighLight.OutlineColor = ESPOutlineColor
+		TeleportSection2:NewButton("Teleport To Badge Character Selection", "Teleport To Badge Character Selection", function()
 
-					v.CharacterAdded:Connect(function(character)
+			TeleportTo(nil, -286, 5, 515)
 
-						if ESPAllPlayers == true then
+			print("Teleported!!!")
 
-							if character:FindFirstChild("EHL") == nil then
+		end)
 
-								local ESPHighLight = Instance.new("Highlight", character)
-								ESPHighLight.Name = "EHL"
-								ESPHighLight.FillColor = ESPFillColor
-								ESPHighLight.OutlineColor = ESPOutlineColor
+		TeleportSection2:NewButton("Teleport To Credit Room", "Teleport To Credit Room", function()
+
+			TeleportTo(nil, -389, 4, 248)
+
+			print("Teleported!!!")
+
+		end)
+
+		--ESP
+
+		local ESP = Window:NewTab("ESP")
+		local ESPSection = ESP:NewSection("ESP")
+
+		ESPSection:NewToggle("ESP All Players", "ESP All Players", function(state)
+
+			if state then
+
+				ESPAllPlayers = true
+
+				for i, v in ipairs(game.Players:GetChildren()) do
+
+					if v and v.Character then
+
+						local ESPHighLight = Instance.new("Highlight", v.Character)
+						ESPHighLight.Name = "EHL"
+						ESPHighLight.FillColor = ESPFillColor
+						ESPHighLight.OutlineColor = ESPOutlineColor
+
+						v.CharacterAdded:Connect(function(character)
+
+							if ESPAllPlayers == true then
+
+								if character:FindFirstChild("EHL") == nil then
+
+									local ESPHighLight = Instance.new("Highlight", character)
+									ESPHighLight.Name = "EHL"
+									ESPHighLight.FillColor = ESPFillColor
+									ESPHighLight.OutlineColor = ESPOutlineColor
+
+								end
 
 							end
 
-						end
+						end)
 
-					end)
+					end
+
+				end
+
+			else
+
+				ESPAllPlayers = false
+
+				for i, v in ipairs(game.Players:GetChildren()) do
+
+					if v and v.Character and v.Character:FindFirstChild("EHL") then
+
+						v.Character:FindFirstChild("EHL"):Destroy()
+
+					end
 
 				end
 
 			end
 
-		else
+		end)
 
-			ESPAllPlayers = false
+		ESPSection:NewColorPicker("Change ESP Fill Color", "Change the ESP Fill Color", ESPFillColor, function(color)
 
-			for i, v in ipairs(game.Players:GetChildren()) do
+			print(color)
 
-				if v and v.Character and v.Character:FindFirstChild("EHL") then
+			ESPFillColor = color
 
-					v.Character:FindFirstChild("EHL"):Destroy()
+		end)
 
-				end
+		ESPSection:NewColorPicker("Change ESP Outline Color", "Change the ESP Outline Color", ESPOutlineColor, function(color)
 
-			end
+			print(color)
 
-		end
+			ESPOutlineColor = color
 
-	end)
-
-	ESPSection:NewColorPicker("Change ESP Fill Color", "Change the ESP Fill Color", ESPFillColor, function(color)
-
-		print(color)
-
-		ESPFillColor = color
-
-	end)
-
-	ESPSection:NewColorPicker("Change ESP Outline Color", "Change the ESP Outline Color", ESPOutlineColor, function(color)
-
-		print(color)
-
-		ESPOutlineColor = color
+		end)
 
 	end)
 
