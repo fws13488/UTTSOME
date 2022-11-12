@@ -51,15 +51,7 @@ if game.PlaceId == 10656893781 then
 
 			if v.Name ~= LocalPlayer.Name then
 
-				if text == "" then
-
-					text = v.Name
-
-				else
-
-					text = text, v.Name
-
-				end
+				text = {v.Name}
 
 			end
 
