@@ -3,8 +3,7 @@ local LocalPlayer = game.Players.LocalPlayer
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit", "Ocean")
 
-local PlayersList = {"Refresh"}
-local currentPlayerNumber = 1
+local PlayersList = {"Refresh",}
 
 local ChosePlayer = nil
 local allowedToTeleportToClickedPosition = false
@@ -49,15 +48,11 @@ if game.PlaceId == 10656893781 then
 
 		table.clear(PlayersList)
 
-		currentPlayerNumber = 1
-
 		for i, v in ipairs(game.Players:GetChildren()) do
 
 			if v.Name ~= LocalPlayer.Name then
 
-				PlayersList[currentPlayerNumber] = v.Name
-
-				currentPlayerNumber += 1
+				PlayersList[v.Name] = v.Name
 
 			end
 
