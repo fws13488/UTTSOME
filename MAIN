@@ -3,6 +3,10 @@ local LocalPlayer = game.Players.LocalPlayer
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit", "Ocean")
 
+local PlayersList = {}
+local currentPlayerNumber = 1
+
+local ChosePlayer = nil
 local allowedToTeleportToClickedPosition = false
 local ESPAllPlayers = false
 
@@ -19,6 +23,7 @@ if game.PlaceId == 10656893781 then
 
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
+	local PlayerSection2 = Player:NewSection("Players")
 
 	PlayerSection:NewButton("Reset Character", "Reset Your Character", function()
 
@@ -27,6 +32,52 @@ if game.PlaceId == 10656893781 then
 			LocalPlayer.Character.Humanoid.Health = 0
 
 			wait()
+
+		end
+
+	end)
+
+	PlayerSection2:NewDropdown("Choose Player", "Choose Player", {PlayersList}, function(currentOption)
+
+		ChosePlayer = currentOption
+
+		print("Player Chose: "..currentOption)
+
+	end)
+
+	PlayerSection2:NewButton("Refresh Players List", "Refresh Players List", function()
+
+		table.clear(PlayersList)
+
+		currentPlayerNumber = 1
+
+		for i, v in ipairs(game.Players:GetChildren()) do
+
+			if v.Name ~= LocalPlayer.Name then
+
+				PlayersList[currentPlayerNumber] = v.Name
+
+				currentPlayerNumber += 1
+
+			end
+
+		end
+
+	end)
+
+	PlayerSection2:NewToggle("Spectate Player", "Spectate Player", function(state)
+
+		if state then
+
+			if ChosePlayer ~= nil then
+
+				workspace.Camera.CameraSubject = game.Players[ChosePlayer].Character.Humanoid
+
+			end
+
+		else
+
+			workspace.Camera.CameraSubject = LocalPlayer.Character.Humanoid
 
 		end
 
