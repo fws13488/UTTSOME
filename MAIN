@@ -3,6 +3,34 @@ local LocalPlayer = game.Players.LocalPlayer
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit", "Ocean")
 
+local PlayersList = {
+
+	game.Players:GetChildren()[1].Name,
+
+	game.Players:GetChildren()[2].Name,
+
+	game.Players:GetChildren()[3].Name,
+
+	game.Players:GetChildren()[4].Name,
+
+	game.Players:GetChildren()[5].Name,
+
+	game.Players:GetChildren()[6].Name,
+
+	game.Players:GetChildren()[7].Name,
+
+	game.Players:GetChildren()[8].Name,
+
+	game.Players:GetChildren()[9].Name,
+
+	game.Players:GetChildren()[10].Name,
+
+	game.Players:GetChildren()[11].Name,
+
+	game.Players:GetChildren()[12].Name,
+
+}
+
 local ChosePlayer = nil
 local allowedToTeleportToClickedPosition = false
 local ESPAllPlayers = false
@@ -38,7 +66,7 @@ if game.PlaceId == 10656893781 then
 
 	end)
 
-	local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", {game:GetChildren()[1], game:GetChildren()[2], game:GetChildren()[3], game:GetChildren()[4], game:GetChildren()[5], game:GetChildren()[6], game:GetChildren()[7], game:GetChildren()[8], game:GetChildren()[9], game:GetChildren()[10], game:GetChildren()[11], game:GetChildren()[12]}, function(currentOption)
+	local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", PlayersList, function(currentOption)
 
 		ChosePlayer = currentOption
 
@@ -48,9 +76,37 @@ if game.PlaceId == 10656893781 then
 
 	PlayerSection2:NewButton("Refresh Players List", "Refresh Players List", function()
 
-		local PL = {game:GetChildren()[1], game:GetChildren()[2], game:GetChildren()[3], game:GetChildren()[4], game:GetChildren()[5], game:GetChildren()[6], game:GetChildren()[7], game:GetChildren()[8], game:GetChildren()[9], game:GetChildren()[10], game:GetChildren()[11], game:GetChildren()[12]}
+		table.clear(PlayersList)
 
-		playersList:Refresh(PL)
+		PlayersList = {
+
+			game.Players:GetChildren()[1].Name,
+
+			game.Players:GetChildren()[2].Name,
+
+			game.Players:GetChildren()[3].Name,
+
+			game.Players:GetChildren()[4].Name,
+
+			game.Players:GetChildren()[5].Name,
+
+			game.Players:GetChildren()[6].Name,
+
+			game.Players:GetChildren()[7].Name,
+
+			game.Players:GetChildren()[8].Name,
+
+			game.Players:GetChildren()[9].Name,
+
+			game.Players:GetChildren()[10].Name,
+
+			game.Players:GetChildren()[11].Name,
+
+			game.Players:GetChildren()[12].Name,
+
+		}
+
+		playersList:Refresh(PlayersList)
 
 	end)
 
