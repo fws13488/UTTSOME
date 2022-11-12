@@ -3,7 +3,7 @@ local LocalPlayer = game.Players.LocalPlayer
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit", "Ocean")
 
-local PlayersList = {}
+local PlayersList = {"Refresh"}
 local currentPlayerNumber = 1
 
 local ChosePlayer = nil
