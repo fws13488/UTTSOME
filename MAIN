@@ -45,19 +45,29 @@ if game.PlaceId == 10656893781 then
 	PlayerSection2:NewButton("Refresh Players List", "Refresh Players List", function()
 
 		local PL = {}
-		local PL2
+		local text = ""
 
 		for i, v in ipairs(game.Players:GetChildren()) do
 
 			if v.Name ~= LocalPlayer.Name then
 
+				if text == "" then
 
+					text = v.Name
+
+				else
+
+					text = text, v.Name
+
+				end
 
 			end
 
 		end
 
-		playersList:Refresh(game.Players:GetChildren())
+		PL = text
+
+		playersList:Refresh(PL)
 
 	end)
 
