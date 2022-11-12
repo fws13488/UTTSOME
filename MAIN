@@ -34,7 +34,7 @@ if game.PlaceId == 10656893781 then
 
 	end)
 
-	local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", {"You Need To Refresh Players List"}, function(currentOption)
+	local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", {"You Need To Refresh Players List", ""}, function(currentOption)
 
 		ChosePlayer = currentOption
 
@@ -45,18 +45,19 @@ if game.PlaceId == 10656893781 then
 	PlayerSection2:NewButton("Refresh Players List", "Refresh Players List", function()
 
 		local PL = {}
+		local PL2
 
 		for i, v in ipairs(game.Players:GetChildren()) do
 
 			if v.Name ~= LocalPlayer.Name then
 
-				playersList[i] = v.Name
+
 
 			end
 
 		end
 
-		playersList:Refresh(PL)
+		playersList:Refresh(game.Players:GetChildren())
 
 	end)
 
