@@ -6,6 +6,10 @@ local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit",
 local ChosePlayer = nil
 local allowedToTeleportToClickedPosition = false
 local ESPAllPlayers = false
+local ESPDefaultOutlineColor = Color3.new(255, 0, 0)
+local ESPDefaultFillColor = Color3.new(255, 0, 0)
+local ESPOutlineColor = ESPDefaultOutlineColor
+local ESPFillColor = ESPDefaultFillColor
 
 if game.PlaceId == 10656893781 then
 
@@ -51,7 +55,15 @@ if game.PlaceId == 10656893781 then
 
 			if v.Name ~= LocalPlayer.Name then
 
-				text = {v.Name}
+				if text == "" then
+
+					text = v.Name
+
+				else
+
+					text = (text..","..v.Name)
+
+				end
 
 			end
 
@@ -206,8 +218,8 @@ if game.PlaceId == 10656893781 then
 
 					local ESPHighLight = Instance.new("Highlight", v.Character)
 					ESPHighLight.Name = "EHL"
-					ESPHighLight.FillColor = Color3.new(255, 0, 0)
-					ESPHighLight.OutlineColor = Color3.new(255, 0, 0)
+					ESPHighLight.FillColor = ESPFillColor
+					ESPHighLight.OutlineColor = ESPOutlineColor
 
 					v.CharacterAdded:Connect(function(character)
 
@@ -217,8 +229,8 @@ if game.PlaceId == 10656893781 then
 
 								local ESPHighLight = Instance.new("Highlight", character)
 								ESPHighLight.Name = "EHL"
-								ESPHighLight.FillColor = Color3.new(255, 0, 0)
-								ESPHighLight.OutlineColor = Color3.new(255, 0, 0)
+								ESPHighLight.FillColor = ESPFillColor
+								ESPHighLight.OutlineColor = ESPOutlineColor
 
 							end
 
@@ -245,6 +257,22 @@ if game.PlaceId == 10656893781 then
 			end
 
 		end
+
+	end)
+
+	ESPSection:NewColorPicker("Change ESP Fill Color", "Change the ESP Fill Color", ESPFillColor, function(color)
+
+		print(color)
+
+		ESPFillColor = color
+
+	end)
+
+	ESPSection:NewColorPicker("Change ESP Outline Color", "Change the ESP Outline Color", ESPOutlineColor, function(color)
+
+		print(color)
+
+		ESPOutlineColor = color
 
 	end)
 
@@ -296,8 +324,8 @@ game.Players.PlayerAdded:Connect(function(player)
 
 				local ESPHighLight = Instance.new("Highlight", character)
 				ESPHighLight.Name = "EHL"
-				ESPHighLight.FillColor = Color3.new(255, 0, 0)
-				ESPHighLight.OutlineColor = Color3.new(255, 0, 0)
+				ESPHighLight.FillColor = ESPFillColor
+				ESPHighLight.OutlineColor = ESPOutlineColor
 
 			end
 
