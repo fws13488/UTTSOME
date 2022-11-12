@@ -1,3 +1,13 @@
+game.StarterGui:SetCore("SendNotification", {
+
+	Title = "Exploit UI",
+
+	Text = "Loading the exploit UI, please be patient"
+
+})
+
+wait(5)
+
 local LocalPlayer = game.Players.LocalPlayer
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
@@ -369,3 +379,11 @@ game.Players.PlayerAdded:Connect(function(player)
 	end)
 
 end)
+
+game.StarterGui:SetCore("SendNotification", {
+
+	Title = "Exploit UI",
+
+	Text = "Loaded Exploit UI successfully!"
+
+})
