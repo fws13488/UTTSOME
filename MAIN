@@ -37,7 +37,7 @@ if game.PlaceId == 10656893781 then
 
 	end)
 
-	PlayerSection2:NewDropdown("Choose Player", "Choose Player", {PlayersList}, function(currentOption)
+	PlayerSection2:NewDropdown("Choose Player", "Choose Player", PlayersList, function(currentOption)
 
 		ChosePlayer = currentOption
 
