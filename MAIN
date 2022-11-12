@@ -90,29 +90,29 @@ if game.PlaceId == 10656893781 then
 
 		PlayersList = {
 
-			game.Players:GetChildren()[1].Name,
+			game.Players:GetChildren()[1],
 
-			game.Players:GetChildren()[2].Name,
+			game.Players:GetChildren()[2],
 
-			game.Players:GetChildren()[3].Name,
+			game.Players:GetChildren()[3],
 
-			game.Players:GetChildren()[4].Name,
+			game.Players:GetChildren()[4],
 
-			game.Players:GetChildren()[5].Name,
+			game.Players:GetChildren()[5],
 
-			game.Players:GetChildren()[6].Name,
+			game.Players:GetChildren()[6],
 
-			game.Players:GetChildren()[7].Name,
+			game.Players:GetChildren()[7],
 
-			game.Players:GetChildren()[8].Name,
+			game.Players:GetChildren()[8],
 
-			game.Players:GetChildren()[9].Name,
+			game.Players:GetChildren()[9],
 
-			game.Players:GetChildren()[10].Name,
+			game.Players:GetChildren()[10],
 
-			game.Players:GetChildren()[11].Name,
+			game.Players:GetChildren()[11],
 
-			game.Players:GetChildren()[12].Name,
+			game.Players:GetChildren()[12],
 
 		}
 
