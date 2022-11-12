@@ -53,13 +53,17 @@ if game.PlaceId == 10656893781 then
 
 		for i, v in ipairs(game.Players:GetChildren()) do
 
-			if text == nil then
+			if v.Name ~= LocalPlayer.Name then
 
-				text = v.Name
+				if text == nil then
 
-			else
+					text = v.Name
 
-				text = text, v.Name
+				elseif text ~= nil then
+
+					text = text, v.Name
+
+				end
 
 			end
 
