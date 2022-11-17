@@ -25,7 +25,7 @@ local ESPDefaultFillColor = Color3.new(255, 0, 0)
 local ESPOutlineColor = ESPDefaultOutlineColor
 local ESPFillColor = ESPDefaultFillColor
 
-if game.PlaceId == 10656893781 or RunService:IsStudio() == true then
+if game.PlaceId == 10656893781 then
 
 	local success, errorMessage = pcall(function()
 
