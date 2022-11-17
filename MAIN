@@ -93,6 +93,7 @@ if game.PlaceId == 10656893781 then
 		local Teleport = Window:NewTab("Teleport")
 		local TeleportSection = Teleport:NewSection("Teleport")
 		local TeleportSection2 = Teleport:NewSection("Teleport To Zones")
+		local TeleportSection3 = Teleport:NewSection("Teleport To Special Locations")
 
 		TeleportSection:NewToggle("Teleport To The Clicked Position", "Teleport To The Clicked Position", function(state)
 
@@ -191,6 +192,14 @@ if game.PlaceId == 10656893781 then
 		TeleportSection2:NewButton("Teleport To Credit Room", "Teleport To Credit Room", function()
 
 			TeleportTo(nil, -389, 4, 248)
+
+			print("Teleported!!!")
+
+		end)
+
+		TeleportSection3:NewButton("Teleport To Dustdust Location (Badge)", "Teleport To Dustdust Location For Badge!", function()
+
+			TeleportTo(nil, 311, 10, 104)
 
 			print("Teleported!!!")
 
