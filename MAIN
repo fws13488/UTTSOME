@@ -84,9 +84,9 @@ if game.PlaceId == 10656893781 then
 
 				end
 
-			number = 1
+				number = 1
 
-			playersList:Refresh(unpack(PlayersList))
+				playersList:Refresh(unpack(PlayersList))
 
 			end)
 
