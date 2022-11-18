@@ -62,13 +62,27 @@ if game.PlaceId == 10656893781 then
 
 		end)
 
-		PlayerSection2:NewButton("Refresh Players List (Bugged)", "Refresh Players List (Bugged)", function()
+		PlayerSection2:NewButton("Refresh Players List", "Refresh Players List", function()
 
 			table.clear(PlayersList)
 
 			PlayersList = {}
 
-			playersList:Refresh(PlayersList)
+			local number = 1
+
+			for i, v in ipairs(game.Players:GetChildren()) do
+
+				if v.Name ~= LocalPlayer.Name then
+
+					PlayersList[number] = v.Name
+
+					number += 1
+
+				end
+
+			end
+
+			playersList:Refresh(unpack(PlayersList))
 
 		end)
 
