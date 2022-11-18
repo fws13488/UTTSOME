@@ -54,7 +54,7 @@ if game.PlaceId == 10656893781 then
 
 		end)
 
-		local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", {"You Need To Refresh Players List!"}, function(currentOption)
+		local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", {"You Need To Refresh Players List!",}, function(currentOption)
 
 			ChosePlayer = currentOption
 
@@ -64,27 +64,31 @@ if game.PlaceId == 10656893781 then
 
 		PlayerSection2:NewButton("Refresh Players List", "Refresh Players List", function()
 
-			table.clear(PlayersList)
+			local success, errorMessage = pcall(function()
 
-			PlayersList = {}
+				table.clear(PlayersList)
 
-			local number = 1
+				PlayersList = {}
 
-			for i, v in ipairs(game.Players:GetChildren()) do
+				local number = 1
 
-				if v.Name ~= LocalPlayer.Name then
+				for i, v in ipairs(game.Players:GetChildren()) do
 
-					PlayersList[number] = v.Name
+					if v.Name ~= LocalPlayer.Name then
 
-					number += 1
+						PlayersList[number] = v.Name
+
+						number += 1
+
+					end
 
 				end
-
-			end
 
 			number = 1
 
 			playersList:Refresh(unpack(PlayersList))
+
+			end)
 
 		end)
 
