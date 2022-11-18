@@ -54,7 +54,7 @@ if game.PlaceId == 10656893781 then
 
 		end)
 
-		local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", PlayersList, function(currentOption)
+		local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", "You Need To Refresh Players List!", function(currentOption)
 
 			ChosePlayer = currentOption
 
@@ -81,6 +81,8 @@ if game.PlaceId == 10656893781 then
 				end
 
 			end
+
+			number = 1
 
 			playersList:Refresh(unpack(PlayersList))
 
