@@ -312,7 +312,7 @@ if game.PlaceId == 10656893781 then
 		local HitBox = Window:NewTab("HitBox")
 		local HitBoxSection = HitBox:NewSection("HitBox")
 
-		HitBoxSection:NewToggle("HitBox All Players", "HitBox All Players", function(state)
+		HitBoxSection:NewToggle("HitBox All Players (Bugged)", "HitBox All Players (Bugged)", function(state)
 
 			if state then
 
