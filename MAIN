@@ -8,7 +8,7 @@ game.StarterGui:SetCore("SendNotification", {
 
 wait(5)
 
-local LocalPlayer = game.Players.LocalPlayer
+local LocalPlayer = game.Players.LocalPlayer or game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit", "Ocean")
@@ -22,6 +22,23 @@ local ESPDefaultOutlineColor = Color3.new(255, 0, 0)
 local ESPDefaultFillColor = Color3.new(255, 0, 0)
 local ESPOutlineColor = ESPDefaultOutlineColor
 local ESPFillColor = ESPDefaultFillColor
+
+local HitBoxAllPlayers = false
+
+local Box = Instance.new("Part", game.ReplicatedStorage)
+Box.Name = "Box"
+Box.CanCollide = false
+Box.Anchored = true
+Box.Size = Vector3.new(15.765, 13, 17.135)
+Box.Transparency = 0.99
+
+local BoxHighLight = Instance.new("Highlight", Box)
+BoxHighLight.Name = "HighLight"
+BoxHighLight.Adornee = Box
+BoxHighLight.FillTransparency = 1
+BoxHighLight.OutlineColor = Color3.new(1, 1, 1)
+BoxHighLight.OutlineTransparency = 0.1
+BoxHighLight.DepthMode = Enum.HighlightDepthMode.Occluded
 
 if game.PlaceId == 10656893781 then
 
@@ -62,35 +79,25 @@ if game.PlaceId == 10656893781 then
 
 		PlayerSection2:NewButton("Refresh Players List", "Refresh Players List", function()
 
-			local success, errorMessage = pcall(function()
+			table.clear(PlayersList)
 
-				table.clear(PlayersList)
+			local number = 1
 
-				local number = 1
+			for i, v in ipairs(game.Players:GetChildren()) do
 
-				for i, v in ipairs(game.Players:GetChildren()) do
+				if v.Name ~= LocalPlayer.Name then
 
-					if v.Name ~= LocalPlayer.Name then
+					PlayersList[number] = v.Name
 
-						PlayersList[number] = v.Name
-
-						number += 1
-
-					end
-
-					wait()
+					number += 1
 
 				end
 
-				playersList:Refresh(table.unpack(PlayersList))
-
-			end)
-
-			if not success and errorMessage then
-
-				warn(errorMessage)
+				wait()
 
 			end
+
+			playersList:Refresh(table.unpack(PlayersList))
 
 		end)
 
@@ -300,7 +307,89 @@ if game.PlaceId == 10656893781 then
 
 		end)
 
+		--HITBOX
+
+		local HitBox = Window:NewTab("HitBox")
+		local HitBoxSection = HitBox:NewSection("HitBox")
+
+		HitBoxSection:NewToggle("HitBox All Players", "HitBox All Players", function(state)
+
+			if state then
+
+				HitBoxAllPlayers = true
+
+				for i, v in ipairs(game.Players:GetChildren()) do
+
+					if v and v.Character and v.Name ~= LocalPlayer.Name then
+
+						local NewBox = Box:Clone()
+						NewBox.Parent = v.Character
+						NewBox.Position = v.Character.HumanoidRootPart.Position
+						NewBox.Rotation = v.Character.HumanoidRootPart.Rotation
+						NewBox.HighLight.Adornee = NewBox
+
+						v.Character.Humanoid.Changed:Connect(function()
+
+							NewBox.Position = v.Character.HumanoidRootPart.Position
+							NewBox.Rotation = v.Character.HumanoidRootPart.Rotation
+
+						end)
+
+						v.CharacterAdded:Connect(function(character)
+
+							if HitBoxAllPlayers == true then
+
+								if character:FindFirstChild("Box") == nil then
+
+									local NewBox2 = Box:Clone()
+									NewBox2.Parent = character
+									NewBox2.Position = character.HumanoidRootPart.Position
+									NewBox2.Rotation = character.HumanoidRootPart.Rotation
+									NewBox2.HighLight.Adornee = NewBox2
+
+									character.Humanoid.Changed:Connect(function()
+
+										NewBox2.Position = character.HumanoidRootPart.Position
+										NewBox2.Rotation = character.HumanoidRootPart.Rotation
+
+									end)
+
+
+								end
+
+							end
+
+						end)
+
+					end
+
+				end
+
+			else
+
+				HitBoxAllPlayers = false
+
+				for i, v in ipairs(game.Players:GetChildren()) do
+
+					if v and v.Character and v.Character:FindFirstChild("Box") then
+
+						v.Character:FindFirstChild("Box"):Destroy()
+
+					end
+
+				end
+
+			end
+
+		end)
+
 	end)
+
+	if not success and errorMessage then
+
+		warn(errorMessage)
+
+	end
 
 else
 
@@ -316,7 +405,7 @@ LocalPlayer:GetMouse().Button1Down:Connect(function()
 
 		if ClickedPosition then
 
-			LocalPlayer.Character:MoveTo(ClickedPosition)
+			TeleportTo(ClickedPosition, nil, nil, nil)
 
 			print("Teleported To Clicked Position!!!")
 
@@ -352,6 +441,27 @@ game.Players.PlayerAdded:Connect(function(player)
 				ESPHighLight.Name = "EHL"
 				ESPHighLight.FillColor = ESPFillColor
 				ESPHighLight.OutlineColor = ESPOutlineColor
+
+			end
+
+		end
+
+		if HitBoxAllPlayers == true and player.Name ~= LocalPlayer.Name then
+
+			if character:FindFirstChild("Box") == nil then
+
+				local NewBox = Box:Clone()
+				NewBox.Parent = character
+				NewBox.Position = character.HumanoidRootPart.Position
+				NewBox.Rotation = character.HumanoidRootPart.Rotation
+				NewBox.HighLight.Adornee = NewBox
+
+				character.Humanoid.Changed:Connect(function()
+
+					NewBox.Position = character.HumanoidRootPart.Position
+					NewBox.Rotation = character.HumanoidRootPart.Rotation
+
+				end)
 
 			end
 
