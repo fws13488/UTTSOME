@@ -86,6 +86,12 @@ if game.PlaceId == 10656893781 then
 
 			end)
 
+			if not success and errorMessage then
+
+				warn(errorMessage)
+
+			end
+
 		end)
 
 		PlayerSection2:NewToggle("Spectate Player", "Spectate Player", function(state)
