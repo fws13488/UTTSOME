@@ -10,8 +10,6 @@ wait(5)
 
 local LocalPlayer = game.Players.LocalPlayer
 
-local RunService = game:GetService("RunService")
-
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Exploit UI - UT the start of madness Exploit", "Ocean")
 
@@ -68,8 +66,6 @@ if game.PlaceId == 10656893781 then
 
 				table.clear(PlayersList)
 
-				PlayersList = {}
-
 				local number = 1
 
 				for i, v in ipairs(game.Players:GetChildren()) do
@@ -82,11 +78,11 @@ if game.PlaceId == 10656893781 then
 
 					end
 
+					wait()
+
 				end
 
-				number = 1
-
-				playersList:Refresh(unpack(PlayersList))
+				playersList:Refresh(table.unpack(PlayersList))
 
 			end)
 
