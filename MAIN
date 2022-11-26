@@ -29,7 +29,7 @@ local Box = Instance.new("Part", game.ReplicatedStorage)
 Box.Name = "Box"
 Box.CanCollide = false
 Box.Anchored = true
-Box.Size = Vector3.new(15.765, 13, 17.135)
+Box.Size = Vector3.new(60.5, 40, 60.5)
 Box.Transparency = 0.99
 
 local BoxHighLight = Instance.new("Highlight", Box)
