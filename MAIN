@@ -69,6 +69,40 @@ if game.PlaceId == 10656893781 then
 
 		end)
 
+		PlayerSection:NewToggle("Invincible", "Can't die", function(state)
+
+			if state then
+
+				local character = LocalPlayer.Character
+
+				for i, v in ipairs(character:GetChildren()) do
+
+					local success, errorMessage = pcall(function()
+
+						v.CanTouch = false
+
+					end)
+
+				end
+
+			else
+
+				local character = LocalPlayer.Character
+
+				for i, v in ipairs(character:GetChildren()) do
+
+					local success, errorMessage = pcall(function()
+
+						v.CanTouch = true
+
+					end)
+
+				end
+
+			end
+
+		end)
+
 		local playersList = PlayerSection2:NewDropdown("Choose Player", "Choose Player", {"You Need To Refresh Players List!",}, function(currentOption)
 
 			ChosePlayer = currentOption
